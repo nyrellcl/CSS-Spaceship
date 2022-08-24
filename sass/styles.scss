@@ -1,0 +1,318 @@
+@import "./base/base";
+
+@import "./colors/colors";
+
+body{
+    background-color: #000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.canvas{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .stars{
+        position: absolute;
+        background: #ffe194;
+        top: -40vmin;
+        width: .7vmin;
+        border-radius: 50%;
+        height: .7vmin;
+        filter: blur(.2vmin);
+        animation: twinkle 2s infinite;
+        box-shadow:20vmin 2vmin 0 #ffe194,
+        10vmin -20vmin 0  #ffe194, 20vmin 50vmin 0 #ffe194,
+        -30vmin 10vmin 0 #ffe194, -20vmin -40vmin 0 #ffe194,
+        10vmin 110vmin 0 #ffe194, -40vmin 120vmin 0 #ffe194,
+        -10vmin 60vmin 0 #ffe194, 10vmin 120vmin 0 #ffe194,
+        -10vmin 60vmin 0 #ffe194, 40vmin 70vmin 0 #ffe194;
+        &::before{
+            content: '';
+            position: absolute;
+            background: #ffe194;
+            width: .3vmin;
+            height: .3vmin;
+            border-radius: 50%;
+            box-shadow: -40vmin 10vmin 0 #ffe194, 30vmin 10vmin 0 #ffe194,
+            50vmin 10vmin 0 #ffe194, -10vmin 80vmin 0 #ffe194,
+            -40vmin 70vmin 0 #ffe194, 20vmin 120vmin 0 #ffe194,
+            40vmin 20vmin 0 #ffe194, 60vmin 100vmin 0 #ffe194,
+            -30vmin 90vmin 0 #ffe194, -45min -15vmin 0 #ffe194,
+            30vmin 60vmin 0 #ffe194;
+            animation: twinkle 1.5s infinite;
+        }
+
+
+    }
+    .fly{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: motion 15s infinite;
+        .alien{
+            position: absolute;
+            background-color: $alien;
+            width: 15vmin;
+            height: 7vmin;
+            border-radius: 45%;
+            &::before{
+                content: '';
+                position: absolute;
+                background-color: $alien;
+                top: -3vmin;
+                left: 2.5vmin;
+                width: 10vmin;
+                height: 7vmin;
+                border-radius: 50%;
+                box-shadow: 
+                inset -.7vmin 0 .5vmin #5d8233, 
+                inset .7vmin 0  .5vmin #acffad;
+                z-index: -1;//brings cheek in the back
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                top: 2vmin;
+                left: 2vmin;
+                background: #bd4b4b;
+                width: 2vmin;
+                height: 2vmin;
+                border-radius: 50%;
+                filter: blur(.6vmin);
+                box-shadow: 9vmin 0 0 #bd4b4b;
+            }
+        }
+        .topLeft{
+            position: absolute;
+            top: -3vmin;
+            width: 4vmin;
+            height: 5vmin;
+            border-radius: 100% 54% 10% 50% / 70% 10% 30% 30%;
+            border-top: 1.5vmin solid $alien;//folows topp curve of shape
+            transform: rotate(30deg);
+            z-index: -2;
+            &::before{
+                content: '';
+                position: absolute;
+                background: $alien;
+                top: -1vmin;
+                left: -1vmin;
+                width: 2vmin;
+                height: 2vmin;
+                border-radius: 50%;
+                box-shadow: inset -.2vmin -.2vmin 1vmin #5d8233;
+
+            }
+        }
+        .topRight{
+            position: absolute;
+            top: -3vmin;
+            right: 0;
+            width: 4vmin;
+            height: 5vmin;
+            border-radius: 100% 54% 10% 50% / 70% 10% 30% 30%;
+            border-top: 1.5vmin solid $alien;//folows topp curve of shape
+            transform: scaleX(-1) rotate(30deg);//flip horizontally
+            z-index: -2;
+            &::before{
+                content: '';
+                position: absolute;
+                background: $alien;
+                top: -1vmin;
+                left: -1vmin;
+                width: 2vmin;
+                height: 2vmin;
+                border-radius: 50%;
+                box-shadow: inset -.2vmin -.2vmin 1vmin #5d8233;
+
+            }
+        }
+        .eyes{
+            position: absolute;
+            background: #000;
+            width: 1vmin;
+            height: 1vmin;
+            border-radius: 50%;
+            left: 5vmin;
+            box-shadow: 4vmin 0 0 #000;//duplicates eye using box shadow
+
+        }
+        .eyebrows{
+            position: absolute;
+            top: -1vmin;
+            left: 5vmin;
+            background: #000;
+            width: .7vmin;
+            height: .3vmin;
+            box-shadow: 4vmin 0 0 #000;//duplicates eyebrows
+
+        }
+        .mouth{
+            position: absolute;
+            background: #000;
+            bottom: 5vmin;
+            left: 6.5vmin;
+            width: 2vmin;
+            height: 0.5vmin;
+        }
+        .helmet{
+            position: absolute;
+            background: #c9e4c5;
+            top: -11vmin;
+            width: 20vmin;
+            height: 15vmin;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0.4;
+            box-shadow: inset 1.5vmin 0.5vmin 1vmin #fff;
+
+        }
+        .glitter{
+            position: absolute;
+            left: -8vmin;
+            top: -6vmin;
+            background: #fff;
+            width: 1.5vmin;
+            height: 4.5vmin;
+            border-radius: 50%;
+            transform: rotate(15deg);
+            z-index: 1;
+            &::before{
+                content: '';
+                position: absolute;
+                top: -2vmin;
+                left: 1vmin;
+                background: #fff;
+                border-radius: 50%;
+                width: 1.5vmin;
+                height: 1.5vmin;
+            }
+        }
+        
+        .neck{
+            position: absolute;
+            top: 2vmin;
+            left: -7vmin;
+            background: #ffaa4c;
+            width: 14vmin;
+            height: 2vmin;
+            z-index: 1;
+            &::before{
+                content: '';
+                position: absolute;
+                background: #ffe194;
+                left: 4vmin;
+                width: 6vmin;
+                height: 2vmin;
+            }
+        }
+        .ufo{
+            position: absolute;
+            top: -3vmin;
+            background: #f8485e;
+            width: 45vmin;
+            height: 18vmin;
+            border-radius: 50%;
+            z-index: -2;
+            box-shadow: inset 0 -1.5vmin 2vmin #962d2d,
+            inset .5vmin 1vmin 3vmin #fff;
+            &::before{
+                content: '';
+                position: absolute;
+                top: 1.5vmin;
+                left: 12.5vmin;
+                background: #962d2d;
+                width: 20vmin;
+                height: 7vmin;
+                border-radius: 50%;
+                box-shadow: inset 0 -.5vmin 2vmin #4f0e0e;
+            }
+            .lights{
+                position: absolute;
+                top: 6vmin;
+                left: 5vmin;
+                background: #334257;
+                width: 7vmin;
+                height: 4vmin;
+                border-radius: 50%;
+                box-shadow: inset 0 1vmin 1vmin #548ca8;
+                animation: lightOn 15s infinite;
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: 4vmin;
+                    left: 14vmin;
+                    background: #334257;
+                    width: 7vmin;
+                    height: 4vmin;
+                    border-radius: 50%;
+                    box-shadow: inset 0 1vmin 1vmin #548ca8;
+                    animation: lightOn 15s infinite;
+                }
+                &::after{
+                    content: '';
+                    position: absolute;
+                    left: 29vmin;
+                    background: #334257;
+                    width: 7vmin;
+                    height: 4vmin;
+                    border-radius: 50%;
+                    box-shadow: inset 0 1vmin 1vmin #548ca8;
+                    animation: lightOn 15s infinite;
+                }
+            }
+            .legs{
+                position: absolute;
+                background: #334257;
+                left: 4vmin;
+                bottom: 0;
+                width: 3.5vmin;
+                height: 4vmin;
+                border-radius: 62% 38% 79% 21%/ 100% 29% 71% 0%;
+                box-shadow: inset .5vmin -1vmin .5vmin #548ca8, inset .1vmin .2vmin .5vmin #000;
+                &::before{
+                    content: '';
+                    position: absolute;
+                    background: #334257;
+                    left: 32vmin;
+                    bottom: 0;
+                    width: 3.5vmin;
+                    height: 4vmin;
+                    transform: scaleX(-1);//flips horizontally
+                    border-radius: 62% 38% 79% 21%/ 100% 29% 71% 0%;
+                    box-shadow: inset .5vmin -1vmin .5vmin #548ca8, inset .1vmin .2vmin .5vmin #000;
+
+                }
+
+            }
+        }
+    }
+}
+
+@keyframes twinkle{
+    from {opacity: 0}
+    to{opacity: 1;}
+}
+
+@keyframes motion{
+    0%{transform: scale(0) rotate(0deg) translateX(30vmin) rotate(0deg);}
+    30%{transform: scale(1) rotate(260deg) translateX(20vmin) rotate(-250deg);}//tilts UFO
+    70%{transform: scale(1) rotate(350deg) translateX(10vmin) rotate(-360deg);}//tilts UFO
+    100%{transform: scale(0) rotate(10deg) translateX(20vmin) rotate(0deg);}
+}
+
+@keyframes lightOn {
+    0%{background: #334257;}
+    20%{background:#334257;}
+    50%{background: #ffe194;}
+    70%{background: #ffe194;}
+    90%{background:#334257;}
+    100%{background: #334257;}
+}
